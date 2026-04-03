@@ -1,27 +1,31 @@
+with customers as (
 
-/*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
-    This will override configurations stated in dbt_project.yml
+    select *
+    from RAW.JAFFLE_SHOP.CUSTOMERS
 
-    Try changing "table" to "view" below
-*/
+),
 
-{{ config(materialized='table') }}
+orders as (
 
-with source_data as (
+    select *
+    from RAW.JAFFLE_SHOP.ORDERS
 
-    select 1 as id
-    union all
-    select null as id
+),
+
+final as (
+
+    select
+        c.id as customer_id,
+        c.first_name,
+        c.last_name,
+        count(o.id) as total_orders
+
+    from customers c
+    left join orders o
+        on c.id = o.user_id
+
+    group by 1,2,3
 
 )
 
-select *
-from source_data
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
-
--- where id is not null
+select * from final
