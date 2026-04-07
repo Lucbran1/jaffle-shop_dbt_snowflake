@@ -1,20 +1,29 @@
 models:
-   - name: stg_customers
-     columns:
-        - name: customer_id
-          tests:
-            - not_null
-            - unique
-        - name: first_name
-          tests:
-            - not_null
-        - name: last_name
-          tests:
-            - not_null
-
-   - name: stg_orders
-     columns:
-        - name: order_id
-          tests:
-              - not_null
-              - unique
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+         - unique
+         - not_null
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - completed
+                  - shipped
+                  - returned
+                  - placed
+                  - return_pending
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
