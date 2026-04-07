@@ -2,4 +2,4 @@ select
     customer_id,
     first_name,
     last_name
-from {{ ref('customers') }}
+from {{ source('jaffle_shop', 'customers') }}
