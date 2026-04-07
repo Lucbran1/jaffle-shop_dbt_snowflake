@@ -41,5 +41,5 @@ models:
     staging:
       +materialized: view
 
-    example:
+    marts:
       +materialized: table
