@@ -1,13 +1,17 @@
 models:
   - name: stg_customers
+    description: The grain of this table is one row per customer. This table is sourced from the customers table in the raw layer.
     columns:
       - name: customer_id
+        description: The unique identifier for each customer.
         tests:
           - unique
           - not_null
   - name: stg_orders
+    description: The grain of this table is one row per order. This table is sourced from the orders table in the raw layer.  
     columns:
       - name: order_id
+        description: Primary key for the orders table.
         tests:
          - unique
          - not_null
