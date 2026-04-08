@@ -1,15 +1,51 @@
-Welcome to your new dbt project!
+# dbt Snowflake Project – Jaffle Shop
+Author: Luciano Brandao
 
-### Using the starter project
+## 📌 Overview
 
-Try running the following commands:
-- dbt run
-- dbt test
+This project demonstrates a modern data transformation pipeline using **dbt** and **Snowflake**.  
+It transforms raw data into clean, reliable, and analytics-ready datasets.
+---
 
+## 🏗️ Architecture
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [dbt community](https://getdbt.com/community) to learn from other analytics engineers
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+The project follows a layered approach:
+
+- **RAW**: Source data stored in Snowflake  
+- **STAGING**: Data cleaning, renaming, and standardization  
+- **MARTS**: Business-level models for analytics (fact and dimension tables)
+---
+
+## 🔧 Technologies
+
+- dbt (data transformations)
+- Snowflake (data warehouse)
+- SQL
+- Git & GitHub (version control)
+---
+
+## 🔗 Key Concepts Applied
+
+- `source()` for raw data ingestion
+- `ref()` for model dependencies
+- Modular SQL transformations
+- Data lineage and dependency management
+---
+
+## 🧪 Data Quality
+
+Implemented data tests to ensure reliability:
+
+- Generic tests: `not_null`, `unique`, `relationships`
+- Custom test: validation of positive payment totals
+---
+
+## 🚀 How to Run
+```bash
+dbt run
+dbt test
+dbt build
+
+## 📌 Notes
+
+This project was developed as part of dbt Fundamentals training, applying best practices in analytics engineering.
